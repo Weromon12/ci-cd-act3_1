@@ -2,7 +2,7 @@ name: Node.js CI/CD
 
 on:
   push:
-    branches: [ "main" ]  # El pipeline se ejecuta cuando haces push a la rama 'main'
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -20,5 +20,8 @@ jobs:
       - name: Instalar dependencias
         run: npm install
 
-      - name: Ejecutar pruebas
-        run: npm test
+      - name: Verificar permisos en node_modules
+        run: ls -la node_modules/.bin
+
+      - name: Ejecutar pruebas con npx
+        run: npx jest
