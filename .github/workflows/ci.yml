@@ -17,11 +17,14 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Limpiar caché de npm
+        run: npm cache clean --force
+
       - name: Instalar dependencias
         run: npm install
 
-      - name: Verificar permisos en node_modules
-        run: ls -la node_modules/.bin
+      - name: Establecer permisos de ejecución
+        run: chmod +x node_modules/.bin/jest
 
       - name: Ejecutar pruebas con npx
         run: npx jest
